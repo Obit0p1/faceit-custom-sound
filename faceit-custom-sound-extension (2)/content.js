@@ -67,7 +67,7 @@
       i++;
       var k = 1 - i / steps;
       if (a) { try { a.volume = Math.max(0, startVol * k); } catch (e) {} }
-      ytCmd('setVolume', [Math.max(0, Math.round(100 * k))]);
+      ytCmd('setVolume', [Math.max(0, Math.round(settings.volume * k))]);
       if (i >= steps) stopAll();
     }, 50);
   }
@@ -97,6 +97,13 @@
       ytFrame.style.cssText = 'position:fixed;width:1px;height:1px;opacity:0;pointer-events:none;bottom:0;left:0;';
       ytFrame.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&controls=0&enablejsapi=1';
       document.body.appendChild(ytFrame);
+      var applyVol = function () { ytCmd('setVolume', [Math.round(settings.volume)]); };
+      ytFrame.addEventListener('load', function () {
+        applyVol();
+        setTimeout(applyVol, 300);
+        setTimeout(applyVol, 1000);
+        setTimeout(applyVol, 2000);
+      });
       stopTimer = setTimeout(fadeStop, settings.maxSec * 1000);
     } else if (isTikTok(url)) {
       if (resolved) return playAudio(resolved, manual);
