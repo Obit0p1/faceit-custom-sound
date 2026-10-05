@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; }
+  body { width: 320px; margin: 0; padding: 16px; background: #1b1b1f; color: #eee;
+         font-family: system-ui, "Segoe UI", Arial, sans-serif; font-size: 13px; }
+  h1 { font-size: 15px; margin: 0 0 12px; color: #ff5500; }
+  label { display: block; margin: 12px 0 4px; color: #aaa; }
+  input[type=text], input[type=number] { width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #3a3a42;
+         background: #26262c; color: #fff; font-size: 13px; outline: none; }
+  input:focus { border-color: #ff5500; }
+  input[type=range] { width: 100%; accent-color: #ff5500; }
+  .row { display: flex; align-items: center; gap: 8px; }
+  .row span { min-width: 34px; text-align: right; }
+  button { width: 100%; padding: 9px; margin-top: 12px; border: 0; border-radius: 6px; cursor: pointer;
+           font-size: 13px; font-weight: 600; }
+  #test { background: #ff5500; color: #fff; }
+  #donate { background: #2d2d34; color: #fff; }
+  button:hover { filter: brightness(1.15); }
+  #status { margin-top: 10px; min-height: 16px; color: #7ddc7d; font-size: 12px; }
+  .wallet { display: flex; align-items: center; gap: 8px; background: #26262c; border-radius: 6px;
+            padding: 6px 8px; margin-bottom: 6px; }
+  .wallet .info { flex: 1; min-width: 0; }
+  .wallet .coin { font-weight: 600; font-size: 12px; }
+  .wallet .addr { color: #888; font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .wallet button { width: auto; margin: 0; padding: 6px 10px; background: #2d2d34; color: #fff; font-size: 12px; }
+  .hint { color: #777; font-size: 11px; margin-top: 4px; }
+</style>
+</head>
+<body>
+  <h1>FACEIT Custom Sound</h1>
+
+  <label for="url">Ссылка на звук</label>
+  <input type="text" id="url" placeholder="mp3, YouTube или TikTok">
+  <div class="hint">Прямая ссылка на mp3/ogg/wav, YouTube или TikTok</div>
+
+  <label for="volume">Громкость</label>
+  <div class="row"><input type="range" id="volume" min="0" max="100"><span id="volVal"></span></div>
+
+  <label for="maxSec">Макс. длина звука, сек</label>
+  <input type="number" id="maxSec" min="1" max="120">
+
+  <button id="test">▶ Тест звука</button>
+  <label>❤️ Поддержать автора</label>
+  <div id="wallets"></div>
+  <div id="status"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
